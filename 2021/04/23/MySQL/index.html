@@ -1,0 +1,508 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://gitee.com/BothSavage/PicGo/raw/master/image/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="https://gitee.com/BothSavage/PicGo/raw/master/image/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="MySQL基本指令">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mysql学习">
+<meta property="og:url" content="https://flyfish7.github.io/2021/04/23/MySQL/index.html">
+<meta property="og:site_name" content="noobfish">
+<meta property="og:description" content="MySQL基本指令">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-04-23T15:08:40.610Z">
+<meta property="article:modified_time" content="2021-04-23T15:08:40.610Z">
+<meta property="article:author" content="flyfish7">
+<meta property="article:tag" content="Mysql">
+<meta name="twitter:card" content="summary"><title>Mysql学习 | noobfish</title><link ref="canonical" href="https://flyfish7.github.io/2021/04/23/MySQL/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">noobfish</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">Mysql学习</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-04-23</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-04-23</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body">
+        <h2 id="MySQL基本指令"   >
+          <a href="#MySQL基本指令" class="heading-link"><i class="fas fa-link"></i></a><a href="#MySQL基本指令" class="headerlink" title="MySQL基本指令"></a>MySQL基本指令</h2>
+      <span id="more"></span> 
+
+        <h2 id="MySQL的数据引擎"   >
+          <a href="#MySQL的数据引擎" class="heading-link"><i class="fas fa-link"></i></a><a href="#MySQL的数据引擎" class="headerlink" title="MySQL的数据引擎"></a>MySQL的数据引擎</h2>
+      
+        <h3 id="MyISAM"   >
+          <a href="#MyISAM" class="heading-link"><i class="fas fa-link"></i></a><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3>
+      
+        <h3 id="InnoDB"   >
+          <a href="#InnoDB" class="heading-link"><i class="fas fa-link"></i></a><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3>
+      
+        <h4 id="InnoDB日志系统"   >
+          <a href="#InnoDB日志系统" class="heading-link"><i class="fas fa-link"></i></a><a href="#InnoDB日志系统" class="headerlink" title="InnoDB日志系统"></a>InnoDB日志系统</h4>
+      <ul>
+<li><p>undo log<br>用于回滚</p>
+</li>
+<li><p>redo log<br>用于恢复缓冲区的数据</p>
+</li>
+<li><p>bin log<br>用于恢复磁盘数据或者主从复制</p>
+</li>
+</ul>
+
+        <h4 id="MVCC-Multi-version-concurrency-controll"   >
+          <a href="#MVCC-Multi-version-concurrency-controll" class="heading-link"><i class="fas fa-link"></i></a><a href="#MVCC-Multi-version-concurrency-controll" class="headerlink" title="MVCC(Multi-version concurrency controll)"></a>MVCC(Multi-version concurrency controll)</h4>
+      <p>多版本并发控制，用来保证事务的隔离级别，方便回滚</p>
+
+        <h2 id="索引"   >
+          <a href="#索引" class="heading-link"><i class="fas fa-link"></i></a><a href="#索引" class="headerlink" title="索引"></a>索引</h2>
+      
+        <h3 id="索引类型"   >
+          <a href="#索引类型" class="heading-link"><i class="fas fa-link"></i></a><a href="#索引类型" class="headerlink" title="索引类型"></a>索引类型</h3>
+      
+        <h4 id="主键索引"   >
+          <a href="#主键索引" class="heading-link"><i class="fas fa-link"></i></a><a href="#主键索引" class="headerlink" title="主键索引"></a>主键索引</h4>
+      <p>表的主键列对应的索引就是主键索引，并且一张表只能有一个主键，主键不能为null，不能重复。在InnoDB中，如果一张表里没有主键，就会寻找是否存在唯一索引作为默认的主键，如果没有唯一索引存在，<strong>就会自动创建一个6Byte的自增主键。</strong></p>
+
+        <h3 id="索引优化"   >
+          <a href="#索引优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h3>
+      
+        <h4 id="Explain"   >
+          <a href="#Explain" class="heading-link"><i class="fas fa-link"></i></a><a href="#Explain" class="headerlink" title="Explain"></a>Explain</h4>
+      <p>Explain的各个字段的含义：</p>
+<ul>
+<li><p>id: 查询的顺序，id越大最先执行，id相等排序靠前先执行</p>
+</li>
+<li><p>select_type:</p>
+<ol>
+<li>simple: 简单查询，查询不包含子查询或UNION</li>
+<li>primary: 复杂查询中的最外层的查询</li>
+<li>subquery: 包含在子查询中的查询（不在from字句里）</li>
+<li>derived: 包含在from字句中的子查询。MySQL会将结果存放在一个临时表中，也称为派生表</li>
+<li>union: 在union中的第二个和随后的select查询</li>
+</ol>
+</li>
+<li><p>table: 查询的表</p>
+</li>
+<li><p>partitions: 分区（一般用不到，都是分库分表）</p>
+</li>
+<li><p>type: 这一列表示关联类型或访问类型，即MySQL决定如何查找表中的行，查找数据行记录的大概范围。依次从最优到最差分别为：system &gt; const &gt; eq_ref &gt; range &gt; index &gt; ALL。一般来说保证达到range级别，最好到ref。</p>
+<p><strong>NULL</strong>：MySQL能在优化阶段分解查询语句，在执行阶段就不用访问表或者索引。比如在索引中选最小值，可以直接走索引来完成。<br><br><strong>const</strong>: 常量查询，一般是直接定位一条数据<br><br><strong>system</strong>: 查一张表时，这张表只有一条记录，算时const的一种特例<br><br><strong>eq_ref</strong>: 如果有表关联（join连接之类），查询时用的是这个表的primary key或unique key，且最多只会返回一条符合条件的记录，那就是eq_ref。简单的select查询不会出现这种type。<br><br><strong>ref</strong>: 相比eq_ref，不使用唯一索引，而是使用普通索引，或者唯一索引的部分前缀（联合索引），索引要和某个值比较，可能会找到多个符合条件的行。<br><br><strong>range</strong>: 范围扫描，出现在in(), between &gt;, &lt;, =等操作。<br><br><strong>index</strong>: 覆盖索引的概念，就是从非主键索引的叶子节点从头开始扫描到尾。<br><br><strong>ALL</strong>: 全表扫描，扫描聚簇索引的所有叶子节点。</p>
+</li>
+<li><p>possible_keys:</p>
+</li>
+<li><p>key:</p>
+</li>
+<li><p>key_len:</p>
+</li>
+<li><p>ref:</p>
+</li>
+<li><p>rows:</p>
+</li>
+<li><p>filtered:</p>
+</li>
+<li><p>Extra:</p>
+</li>
+</ul>
+
+        <h4 id="索引优化情况"   >
+          <a href="#索引优化情况" class="heading-link"><i class="fas fa-link"></i></a><a href="#索引优化情况" class="headerlink" title="索引优化情况"></a>索引优化情况</h4>
+      <ol>
+<li>全值匹配：<br><br> 联合索引的话尽量让索引的长度越高越好，也就是索引用的越多越好。</li>
+<li>最左前缀法则：</li>
+<li>不要再索引列上做任何操作（计算、函数、（自动或手动）类型转换），会导致索引失效</li>
+<li>存储引擎不能使用索引中<strong>范围</strong>条件右边的列。比如只走了联合索引前两个索引，没有走第三个索引，因为第三个索引是在这个范围内是无序的，所以走不了索引。</li>
+<li>尽量使用覆盖索引（只访问索引的查询（索引包含查询列）），减少select * 语句</li>
+<li>MySQL在使用不等于（！=或者 &lt; 加上 &gt; ）的时候无法使用索引会导致全表（因为结果集太大了）</li>
+<li>is null, is not null 一般情况下也无法使用索引</li>
+<li>like以通配符开头（’$abc…’）MySQL索引失效会变成全表扫描（通配符开头会破坏有序性，因为比较顺序一般都是根据字段的前几个字符来排序的）</li>
+<li>字符串不加单引号索引失效</li>
+<li>少用or或in，用它查询时，MySQL不一定使用索引，MySQL内部优化器会根据检索比例、表大小等多个因素整体评估是否使用索引。</li>
+<li>范围查询优化<br><br>给年龄添加单值索引。可以把范围拆成几个段。
+        <h5 id="模糊查询"   >
+          <a href="#模糊查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h5>
+      </li>
+</ol>
+<p>模糊查询如果用不了索引，可以使用覆盖索引，这样就能用索引。</p>
+
+        <h4 id="索引下推"   >
+          <a href="#索引下推" class="heading-link"><i class="fas fa-link"></i></a><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h4>
+      <p>在索引遍历过程中，虽然可能第一个索引导致后面的索引无序，但是可以对后面的索引进行一个判断，过滤掉不符合条件的记录再回表，这样可以减少回表次数。</p>
+
+        <h4 id="排序"   >
+          <a href="#排序" class="heading-link"><i class="fas fa-link"></i></a><a href="#排序" class="headerlink" title="排序"></a>排序</h4>
+      <p>分为索引排序和文件排序，文件排序效率低</p>
+
+        <h4 id="索引设计原则"   >
+          <a href="#索引设计原则" class="heading-link"><i class="fas fa-link"></i></a><a href="#索引设计原则" class="headerlink" title="索引设计原则"></a>索引设计原则</h4>
+      <ol>
+<li>代码先行，索引后上</li>
+<li>联合索引尽量覆盖条件</li>
+<li>不要再小基数字段上建立索引</li>
+<li>长字符串可以使用前缀索引</li>
+<li>where和order by冲突时优先where</li>
+<li>尽量避免单值索引，多用联合索引</li>
+</ol>
+
+        <h3 id="对于关联索引的优化"   >
+          <a href="#对于关联索引的优化" class="heading-link"><i class="fas fa-link"></i></a><a href="#对于关联索引的优化" class="headerlink" title="对于关联索引的优化"></a>对于关联索引的优化</h3>
+      <p>关联字段加索引</p>
+<p>小表驱动大表</p>
+<p>例子：</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from A where id in (select id from B)</span><br></pre></td></tr></table></div></figure>
+
+<p>in: 当B表的数据集小于A表的数据集时，in优于exists</p>
+<figure class="highlight plain"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from A where id exists (select 1 from B where B.id &#x3D; A.id)</span><br></pre></td></tr></table></div></figure>
+
+<p>exists: 当A表的数据集小于B表，用exists</p>
+
+        <h2 id="锁"   >
+          <a href="#锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#锁" class="headerlink" title="锁"></a>锁</h2>
+      
+        <h3 id="悲观锁"   >
+          <a href="#悲观锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3>
+      
+        <h3 id="乐观锁"   >
+          <a href="#乐观锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3>
+      
+        <h3 id="表锁"   >
+          <a href="#表锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h3>
+      <p>每次锁一张表，开销比较小，加锁快，不会出现死锁，锁粒度大，发生冲突概率大，并发度低，一般用在整表迁移</p>
+
+        <h3 id="行锁"   >
+          <a href="#行锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h3>
+      <p>每次操作锁一行数据，开销大，加锁慢，会出现死锁，锁粒度最小，发生锁冲突的概率最低，并发程度最高。</p>
+
+        <h3 id="间隙锁"   >
+          <a href="#间隙锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#间隙锁" class="headerlink" title="间隙锁"></a>间隙锁</h3>
+      <p>间隙锁，锁的是两个值之间的间隙，意思是把这个间隙给锁住。一定程度上可以在可重复读的级别下解决幻读的问题。只能在<strong>可重复读</strong>下生效。</p>
+
+        <h3 id="临键锁"   >
+          <a href="#临键锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#临键锁" class="headerlink" title="临键锁"></a>临键锁</h3>
+      <p>是行锁和间隙锁的组合。</p>
+
+        <h3 id="无索引行锁会升级为表锁"   >
+          <a href="#无索引行锁会升级为表锁" class="heading-link"><i class="fas fa-link"></i></a><a href="#无索引行锁会升级为表锁" class="headerlink" title="无索引行锁会升级为表锁"></a>无索引行锁会升级为表锁</h3>
+      <p>锁主要是加在索引上，如果对非索引字段更新，行锁可能会变成表锁</p>
+
+        <h3 id="锁优化建议"   >
+          <a href="#锁优化建议" class="heading-link"><i class="fas fa-link"></i></a><a href="#锁优化建议" class="headerlink" title="锁优化建议"></a>锁优化建议</h3>
+      <ul>
+<li>尽可能让所有数据检索都通过索引来完成，避免无索引行锁升级为表锁</li>
+<li>合理设计索引，尽量缩小锁的范围</li>
+<li>尽可能减少检索条件范围，避免间隙锁</li>
+<li>尽量控制事务大小，减少锁定资源量和时间长度，设计事务加锁的sql尽量放在事务的最后执行</li>
+<li>尽可能低级别事务隔离</li>
+</ul>
+
+        <h2 id="分库分表"   >
+          <a href="#分库分表" class="heading-link"><i class="fas fa-link"></i></a><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h2>
+      </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://flyfish7.github.io">flyfish7</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://flyfish7.github.io/2021/04/23/MySQL/">https://flyfish7.github.io/2021/04/23/MySQL/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://flyfish7.github.io/tags/Mysql/">Mysql</a></span></div><nav class="post-paginator paginator"><div class="paginator-prev"><a class="paginator-prev__link" href="/2021/04/23/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"><span class="paginator-prev__icon"><i class="fas fa-angle-left"></i></span><span class="paginator-prev__text">多线程和并发编程</span></a></div><div class="paginator-next"><a class="paginator-next__link" href="/2021/04/23/Java%E5%9F%BA%E7%A1%80/"><span class="paginator-prev__text">Java基础</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E5%9F%BA%E6%9C%AC%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">
+          MySQL基本指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BC%95%E6%93%8E"><span class="toc-number">2.</span> <span class="toc-text">
+          MySQL的数据引擎</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MyISAM"><span class="toc-number">2.1.</span> <span class="toc-text">
+          MyISAM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InnoDB"><span class="toc-number">2.2.</span> <span class="toc-text">
+          InnoDB</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#InnoDB%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F"><span class="toc-number">2.2.1.</span> <span class="toc-text">
+          InnoDB日志系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MVCC-Multi-version-concurrency-controll"><span class="toc-number">2.2.2.</span> <span class="toc-text">
+          MVCC(Multi-version concurrency controll)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95"><span class="toc-number">3.</span> <span class="toc-text">
+          索引</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.1.</span> <span class="toc-text">
+          索引类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E9%94%AE%E7%B4%A2%E5%BC%95"><span class="toc-number">3.1.1.</span> <span class="toc-text">
+          主键索引</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96"><span class="toc-number">3.2.</span> <span class="toc-text">
+          索引优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Explain"><span class="toc-number">3.2.1.</span> <span class="toc-text">
+          Explain</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%BC%98%E5%8C%96%E6%83%85%E5%86%B5"><span class="toc-number">3.2.2.</span> <span class="toc-text">
+          索引优化情况</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2"><span class="toc-number">3.2.2.1.</span> <span class="toc-text">
+          模糊查询</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E4%B8%8B%E6%8E%A8"><span class="toc-number">3.2.3.</span> <span class="toc-text">
+          索引下推</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%92%E5%BA%8F"><span class="toc-number">3.2.4.</span> <span class="toc-text">
+          排序</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B4%A2%E5%BC%95%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99"><span class="toc-number">3.2.5.</span> <span class="toc-text">
+          索引设计原则</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E4%BA%8E%E5%85%B3%E8%81%94%E7%B4%A2%E5%BC%95%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">3.3.</span> <span class="toc-text">
+          对于关联索引的优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%94%81"><span class="toc-number">4.</span> <span class="toc-text">
+          锁</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="toc-number">4.1.</span> <span class="toc-text">
+          悲观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="toc-number">4.2.</span> <span class="toc-text">
+          乐观锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%A8%E9%94%81"><span class="toc-number">4.3.</span> <span class="toc-text">
+          表锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A1%8C%E9%94%81"><span class="toc-number">4.4.</span> <span class="toc-text">
+          行锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%B4%E9%9A%99%E9%94%81"><span class="toc-number">4.5.</span> <span class="toc-text">
+          间隙锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%B4%E9%94%AE%E9%94%81"><span class="toc-number">4.6.</span> <span class="toc-text">
+          临键锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%97%A0%E7%B4%A2%E5%BC%95%E8%A1%8C%E9%94%81%E4%BC%9A%E5%8D%87%E7%BA%A7%E4%B8%BA%E8%A1%A8%E9%94%81"><span class="toc-number">4.7.</span> <span class="toc-text">
+          无索引行锁会升级为表锁</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%94%81%E4%BC%98%E5%8C%96%E5%BB%BA%E8%AE%AE"><span class="toc-number">4.8.</span> <span class="toc-text">
+          锁优化建议</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8"><span class="toc-number">5.</span> <span class="toc-text">
+          分库分表</span></a></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://gitee.com/BothSavage/PicGo/raw/master/image/头像.png" alt="avatar"></div><p class="sidebar-ov-author__text">hello world</p></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">7</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">6</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>flyfish7</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>
