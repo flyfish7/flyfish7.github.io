@@ -1,12 +1,12 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://gitee.com/BothSavage/PicGo/raw/master/image/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="https://gitee.com/BothSavage/PicGo/raw/master/image/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="一面2021.04.21  String&#x3D;”123”和String &#x3D; new String(“123”)的区别  平时一般用到什么样的集合类  谈谈你对ThreadLocal的了解，数据存在哪  谈谈你对ThreadPool的了解  谈谈JVM的内存模型  volatile了解吗，怎么保证可见性（这里扯了扯内存模型）  Java的锁，锁升级等（扯到sychronized的时候说它是重量级锁。。。">
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://gitee.com/BothSavage/PicGo/raw/master/image/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="https://gitee.com/BothSavage/PicGo/raw/master/image/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="一面2021.04.21  String&#x3D;”123”和String &#x3D; new String(“123”)的区别  平时一般用到什么样的集合类  谈谈你对ThreadLocal的了解，数据存在哪">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网易一面">
 <meta property="og:url" content="https://flyfish7.github.io/2021/04/23/%E7%BD%91%E6%98%93%E4%B8%80%E9%9D%A2/index.html">
 <meta property="og:site_name" content="noobfish">
-<meta property="og:description" content="一面2021.04.21  String&#x3D;”123”和String &#x3D; new String(“123”)的区别  平时一般用到什么样的集合类  谈谈你对ThreadLocal的了解，数据存在哪  谈谈你对ThreadPool的了解  谈谈JVM的内存模型  volatile了解吗，怎么保证可见性（这里扯了扯内存模型）  Java的锁，锁升级等（扯到sychronized的时候说它是重量级锁。。。">
+<meta property="og:description" content="一面2021.04.21  String&#x3D;”123”和String &#x3D; new String(“123”)的区别  平时一般用到什么样的集合类  谈谈你对ThreadLocal的了解，数据存在哪">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-04-23T15:32:18.390Z">
-<meta property="article:modified_time" content="2021-04-23T15:32:18.390Z">
+<meta property="article:published_time" content="2021-04-23T15:34:32.470Z">
+<meta property="article:modified_time" content="2021-04-23T15:34:32.470Z">
 <meta property="article:author" content="flyfish7">
 <meta property="article:tag" content="凉经">
 <meta name="twitter:card" content="summary"><title>网易一面 | noobfish</title><link ref="canonical" href="https://flyfish7.github.io/2021/04/23/%E7%BD%91%E6%98%93%E4%B8%80%E9%9D%A2/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
@@ -40,7 +40,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></he
 <li><p>平时一般用到什么样的集合类</p>
 </li>
 <li><p>谈谈你对ThreadLocal的了解，数据存在哪</p>
-</li>
+<span id="more"></span></li>
 <li><p>谈谈你对ThreadPool的了解</p>
 </li>
 <li><p>谈谈JVM的内存模型</p>
