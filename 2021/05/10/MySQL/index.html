@@ -5,8 +5,8 @@
 <meta property="og:site_name" content="noobfish">
 <meta property="og:description" content="MySQL基本指令       基本指令可以看MySQL菜鸟教程">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-05-10T14:20:27.529Z">
-<meta property="article:modified_time" content="2021-05-10T14:20:27.529Z">
+<meta property="article:published_time" content="2021-05-10T14:30:17.599Z">
+<meta property="article:modified_time" content="2021-05-10T14:30:17.599Z">
 <meta property="article:author" content="flyfish7">
 <meta property="article:tag" content="Mysql">
 <meta name="twitter:card" content="summary"><title>Mysql学习 | noobfish</title><link ref="canonical" href="https://flyfish7.github.io/2021/05/10/MySQL/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
@@ -132,12 +132,12 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></he
 <li>like以通配符开头（’$abc…’）MySQL索引失效会变成全表扫描（通配符开头会破坏有序性，因为比较顺序一般都是根据字段的前几个字符来排序的）</li>
 <li>字符串不加单引号索引失效</li>
 <li>少用or或in，用它查询时，MySQL不一定使用索引，MySQL内部优化器会根据检索比例、表大小等多个因素整体评估是否使用索引。</li>
-<li>范围查询优化<br>给年龄添加单值索引。可以把范围拆成几个段。
+<li>范围查询优化<br>给年龄添加单值索引。可以把范围拆成几个段。</li>
+</ol>
+
         <h4 id="模糊查询"   >
           <a href="#模糊查询" class="heading-link"><i class="fas fa-link"></i></a><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h4>
-      </li>
-</ol>
-<p>模糊查询如果用不了索引，可以使用覆盖索引，这样就能用索引。</p>
+      <p>模糊查询如果用不了索引，可以使用覆盖索引，这样就能用索引。</p>
 
         <h4 id="索引下推"   >
           <a href="#索引下推" class="heading-link"><i class="fas fa-link"></i></a><a href="#索引下推" class="headerlink" title="索引下推"></a>索引下推</h4>
