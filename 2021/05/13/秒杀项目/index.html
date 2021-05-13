@@ -1,0 +1,439 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="format-detection" content="telephone=no"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><link rel="icon" href="https://gitee.com/BothSavage/PicGo/raw/master/image/favicon-16x16.png?v=2.6.2" type="image/png" sizes="16x16"><link rel="icon" href="https://gitee.com/BothSavage/PicGo/raw/master/image/favicon-32x32.png?v=2.6.2" type="image/png" sizes="32x32"><meta name="description" content="声明：本项目来自于黑马青橙商城，本篇仅用于个人学习                     需求分析和系统设计                           需求分析       做的是B2C电商平台，包含网站前台和管理后台两大部分。网站前台包含主站频道（首页、搜索、购物车以及支付）、用户中心、秒杀、优惠券等频道。管理后台包含商品、订单、库存、用户、运营、统计、财务、设置等功能。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="秒杀项目学习">
+<meta property="og:url" content="https://flyfish7.github.io/2021/05/13/%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE/index.html">
+<meta property="og:site_name" content="noobfish">
+<meta property="og:description" content="声明：本项目来自于黑马青橙商城，本篇仅用于个人学习                     需求分析和系统设计                           需求分析       做的是B2C电商平台，包含网站前台和管理后台两大部分。网站前台包含主站频道（首页、搜索、购物车以及支付）、用户中心、秒杀、优惠券等频道。管理后台包含商品、订单、库存、用户、运营、统计、财务、设置等功能。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://z3.ax1x.com/2021/05/13/gDt45d.md.png">
+<meta property="article:published_time" content="2021-05-13T12:51:14.800Z">
+<meta property="article:modified_time" content="2021-05-13T12:51:14.800Z">
+<meta property="article:author" content="flyfish7">
+<meta property="article:tag" content="项目实战">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://z3.ax1x.com/2021/05/13/gDt45d.md.png"><title>秒杀项目学习 | noobfish</title><link ref="canonical" href="https://flyfish7.github.io/2021/05/13/%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE/"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css" type="text/css"><link rel="stylesheet" href="/css/index.css?v=2.6.2"><script>var Stun = window.Stun || {};
+var CONFIG = {
+  root: '/',
+  algolia: undefined,
+  assistSearch: undefined,
+  fontIcon: {"prompt":{"success":"fas fa-check-circle","info":"fas fa-arrow-circle-right","warning":"fas fa-exclamation-circle","error":"fas fa-times-circle"},"copyBtn":"fas fa-copy"},
+  sidebar: {"offsetTop":"20px","tocMaxDepth":6},
+  header: {"enable":true,"showOnPost":true,"scrollDownIcon":false},
+  postWidget: {"endText":true},
+  nightMode: {"enable":true},
+  back2top: {"enable":true},
+  codeblock: {"style":"default","highlight":"light","wordWrap":false},
+  reward: false,
+  fancybox: false,
+  zoomImage: {"gapAside":"20px"},
+  galleryWaterfall: undefined,
+  lazyload: false,
+  pjax: undefined,
+  externalLink: {"icon":{"enable":true,"name":"fas fa-external-link-alt"}},
+  shortcuts: undefined,
+  prompt: {"copyButton":"复制","copySuccess":"复制成功","copyError":"复制失败"},
+  sourcePath: {"js":"js","css":"css","images":"images"},
+};
+
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">noobfish</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content" id="content"><!-- Just used to judge whether it is an article page--><div id="is-post"></div><div class="post"><header class="post-header"><h1 class="post-title">秒杀项目学习</h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-05-13</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-05-13</span></span><span class="post-meta-item post-meta-item--visitors"><span class="post-meta-item__icon"><i class="fas fa-eye"></i></span><span class="post-meta-item__info">阅读次数</span><span class="post-meta-item__value" id="busuanzi_value_page_pv"></span></span></div></header><div class="post-body"><p>声明：本项目来自于黑马青橙商城，本篇仅用于个人学习</p>
+
+        <h2 id="需求分析和系统设计"   >
+          <a href="#需求分析和系统设计" class="heading-link"><i class="fas fa-link"></i></a><a href="#需求分析和系统设计" class="headerlink" title="需求分析和系统设计"></a>需求分析和系统设计</h2>
+      
+        <h3 id="需求分析"   >
+          <a href="#需求分析" class="heading-link"><i class="fas fa-link"></i></a><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3>
+      <p>做的是B2C电商平台，包含网站前台和管理后台两大部分。网站前台包含主站频道（首页、搜索、购物车以及支付）、用户中心、秒杀、优惠券等频道。管理后台包含商品、订单、库存、用户、运营、统计、财务、设置等功能。</p>
+
+        <h3 id="系统设计"   >
+          <a href="#系统设计" class="heading-link"><i class="fas fa-link"></i></a><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h3>
+      
+        <h4 id="数据库设计"   >
+          <a href="#数据库设计" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h4>
+      <ol>
+<li>商品库</li>
+<li>订单库</li>
+<li>基础设置库</li>
+<li>运营库</li>
+<li>用户库</li>
+<li>系统库</li>
+<li>支付库</li>
+<li>短信库</li>
+</ol>
+
+        <h4 id="技术选型"   >
+          <a href="#技术选型" class="heading-link"><i class="fas fa-link"></i></a><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h4>
+      <p>主框架技术：SSM（通用mapper）+Dubbo</p>
+<p>前端技术：网站后台Vue.js+ElementUI，网站前台采用Vue.js和模板技术thymeleaf</p>
+<p>消息中间件技术：RabbitMQ</p>
+<p>搜索中间件技术：elasticsearch</p>
+<p>缓存中间件技术：redis</p>
+<p>报表插件：echars</p>
+<p>安全框架：SpringSecurity</p>
+<p>单点登录中间件：CAS</p>
+
+        <h4 id="系统框架图"   >
+          <a href="#系统框架图" class="heading-link"><i class="fas fa-link"></i></a><a href="#系统框架图" class="headerlink" title="系统框架图"></a>系统框架图</h4>
+      <p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gDt45d"><img src="https://z3.ax1x.com/2021/05/13/gDt45d.md.png" alt="gDt45d.md.png"></a></p>
+
+        <h2 id="通用mapper"   >
+          <a href="#通用mapper" class="heading-link"><i class="fas fa-link"></i></a><a href="#通用mapper" class="headerlink" title="通用mapper"></a>通用mapper</h2>
+      
+        <h3 id="什么是通用mapper"   >
+          <a href="#什么是通用mapper" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是通用mapper" class="headerlink" title="什么是通用mapper"></a>什么是通用mapper</h3>
+      <p>通用mapper是一个可以实现任意MyBatis通用方法的框架，项目提供了常规的增删改查操作以及Example相关的单表操作。可以避免自己去在mapper.xml写很多sql语句</p>
+
+        <h3 id="通用mapper快速入门"   >
+          <a href="#通用mapper快速入门" class="heading-link"><i class="fas fa-link"></i></a><a href="#通用mapper快速入门" class="headerlink" title="通用mapper快速入门"></a>通用mapper快速入门</h3>
+      <p>在线官方文档：<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://gitee.com/free/Mapper/wikis/Home" >https://gitee.com/free/Mapper/wikis/Home</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="通用mapper与Spring集成"   >
+          <a href="#通用mapper与Spring集成" class="heading-link"><i class="fas fa-link"></i></a><a href="#通用mapper与Spring集成" class="headerlink" title="通用mapper与Spring集成"></a>通用mapper与Spring集成</h4>
+      <p>官方的文档说明了通用mapper的三种使用方式，纯java使用方式、与Spring集成方式、与SpringBoot集成方式。这里使用的是Spring集成方式</p>
+<ol>
+<li>引入依赖</li>
+</ol>
+<p>在pom.xml文件中存放依赖</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;&gt;</span></span><br></pre></td></tr></table></div></figure>
+<ol start="2">
+<li>与Spring集成</li>
+</ol>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="实体类映射"   >
+          <a href="#实体类映射" class="heading-link"><i class="fas fa-link"></i></a><a href="#实体类映射" class="headerlink" title="实体类映射"></a>实体类映射</h4>
+      <p>使用JPA的注解</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="创建Mapper接口"   >
+          <a href="#创建Mapper接口" class="heading-link"><i class="fas fa-link"></i></a><a href="#创建Mapper接口" class="headerlink" title="创建Mapper接口"></a>创建Mapper接口</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p>继承<code>tk.mybatis.mapper.common.Mapper</code>接口，在接口上指定了泛型<code>Brand</code>。当继承了<code>Mapper</code>接口后，就已经有了针对<code>Brand</code>的大量方法。这些方法中和MBG生成的大部分方法都一致，还有一部分MBG之外的常用方法。</p>
+
+        <h2 id="工程搭建"   >
+          <a href="#工程搭建" class="heading-link"><i class="fas fa-link"></i></a><a href="#工程搭建" class="headerlink" title="工程搭建"></a>工程搭建</h2>
+      
+        <h3 id="准备工作"   >
+          <a href="#准备工作" class="heading-link"><i class="fas fa-link"></i></a><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3>
+      
+        <h3 id="模块依赖关系图"   >
+          <a href="#模块依赖关系图" class="heading-link"><i class="fas fa-link"></i></a><a href="#模块依赖关系图" class="headerlink" title="模块依赖关系图"></a>模块依赖关系图</h3>
+      
+        <h3 id="工程搭建-1"   >
+          <a href="#工程搭建-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#工程搭建-1" class="headerlink" title="工程搭建"></a>工程搭建</h3>
+      
+        <h4 id="父工程与公共模块"   >
+          <a href="#父工程与公共模块" class="heading-link"><i class="fas fa-link"></i></a><a href="#父工程与公共模块" class="headerlink" title="父工程与公共模块"></a>父工程与公共模块</h4>
+      
+        <h4 id="服务层模块（商品）"   >
+          <a href="#服务层模块（商品）" class="heading-link"><i class="fas fa-link"></i></a><a href="#服务层模块（商品）" class="headerlink" title="服务层模块（商品）"></a>服务层模块（商品）</h4>
+      
+        <h4 id="web层（管理后台）"   >
+          <a href="#web层（管理后台）" class="heading-link"><i class="fas fa-link"></i></a><a href="#web层（管理后台）" class="headerlink" title="web层（管理后台）"></a>web层（管理后台）</h4>
+      
+        <h2 id="管理后台-品牌管理后端"   >
+          <a href="#管理后台-品牌管理后端" class="heading-link"><i class="fas fa-link"></i></a><a href="#管理后台-品牌管理后端" class="headerlink" title="管理后台-品牌管理后端"></a>管理后台-品牌管理后端</h2>
+      
+        <h3 id="品牌列表"   >
+          <a href="#品牌列表" class="heading-link"><i class="fas fa-link"></i></a><a href="#品牌列表" class="headerlink" title="品牌列表"></a>品牌列表</h3>
+      
+        <h3 id="品牌分页列表"   >
+          <a href="#品牌分页列表" class="heading-link"><i class="fas fa-link"></i></a><a href="#品牌分页列表" class="headerlink" title="品牌分页列表"></a>品牌分页列表</h3>
+      </div><footer class="post-footer"><div class="post-ending ending"><div class="ending__text">------ 本文结束，感谢您的阅读 ------</div></div><div class="post-copyright copyright"><div class="copyright-author"><span class="copyright-author__name">本文作者: </span><span class="copyright-author__value"><a href="https://flyfish7.github.io">flyfish7</a></span></div><div class="copyright-link"><span class="copyright-link__name">本文链接: </span><span class="copyright-link__value"><a href="https://flyfish7.github.io/2021/05/13/%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE/">https://flyfish7.github.io/2021/05/13/%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE/</a></span></div><div class="copyright-notice"><span class="copyright-notice__name">版权声明: </span><span class="copyright-notice__value">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" rel="external nofollow" target="_blank">BY-NC-SA</a> 许可协议。转载请注明出处！</span></div></div><div class="post-tags"><span class="post-tags-item"><span class="post-tags-item__icon"><i class="fas fa-tag"></i></span><a class="post-tags-item__link" href="https://flyfish7.github.io/tags/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/">项目实战</a></span></div><nav class="post-paginator paginator"><div class="paginator-next"><a class="paginator-next__link" href="/2021/05/11/JVM%E6%80%BB%E7%BB%93/"><span class="paginator-prev__text">JVM总结</span><span class="paginator-next__icon"><i class="fas fa-angle-right"></i></span></a></div></nav></footer></div></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><div class="sidebar-nav"><span class="sidebar-nav-toc current">文章目录</span><span class="sidebar-nav-ov">站点概览</span></div><section class="sidebar-toc"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90%E5%92%8C%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.</span> <span class="toc-text">
+          需求分析和系统设计</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82%E5%88%86%E6%9E%90"><span class="toc-number">1.1.</span> <span class="toc-text">
+          需求分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.</span> <span class="toc-text">
+          系统设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1"><span class="toc-number">1.2.1.</span> <span class="toc-text">
+          数据库设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B"><span class="toc-number">1.2.2.</span> <span class="toc-text">
+          技术选型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F%E6%A1%86%E6%9E%B6%E5%9B%BE"><span class="toc-number">1.2.3.</span> <span class="toc-text">
+          系统框架图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%9A%E7%94%A8mapper"><span class="toc-number">2.</span> <span class="toc-text">
+          通用mapper</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%80%9A%E7%94%A8mapper"><span class="toc-number">2.1.</span> <span class="toc-text">
+          什么是通用mapper</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8mapper%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8"><span class="toc-number">2.2.</span> <span class="toc-text">
+          通用mapper快速入门</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%9A%E7%94%A8mapper%E4%B8%8ESpring%E9%9B%86%E6%88%90"><span class="toc-number">2.2.1.</span> <span class="toc-text">
+          通用mapper与Spring集成</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AE%9E%E4%BD%93%E7%B1%BB%E6%98%A0%E5%B0%84"><span class="toc-number">2.2.2.</span> <span class="toc-text">
+          实体类映射</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BAMapper%E6%8E%A5%E5%8F%A3"><span class="toc-number">2.2.3.</span> <span class="toc-text">
+          创建Mapper接口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA"><span class="toc-number">3.</span> <span class="toc-text">
+          工程搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">
+          准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BB%E5%9B%BE"><span class="toc-number">3.2.</span> <span class="toc-text">
+          模块依赖关系图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E6%90%AD%E5%BB%BA-1"><span class="toc-number">3.3.</span> <span class="toc-text">
+          工程搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%88%B6%E5%B7%A5%E7%A8%8B%E4%B8%8E%E5%85%AC%E5%85%B1%E6%A8%A1%E5%9D%97"><span class="toc-number">3.3.1.</span> <span class="toc-text">
+          父工程与公共模块</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E5%B1%82%E6%A8%A1%E5%9D%97%EF%BC%88%E5%95%86%E5%93%81%EF%BC%89"><span class="toc-number">3.3.2.</span> <span class="toc-text">
+          服务层模块（商品）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#web%E5%B1%82%EF%BC%88%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%EF%BC%89"><span class="toc-number">3.3.3.</span> <span class="toc-text">
+          web层（管理后台）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0-%E5%93%81%E7%89%8C%E7%AE%A1%E7%90%86%E5%90%8E%E7%AB%AF"><span class="toc-number">4.</span> <span class="toc-text">
+          管理后台-品牌管理后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%81%E7%89%8C%E5%88%97%E8%A1%A8"><span class="toc-number">4.1.</span> <span class="toc-text">
+          品牌列表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%81%E7%89%8C%E5%88%86%E9%A1%B5%E5%88%97%E8%A1%A8"><span class="toc-number">4.2.</span> <span class="toc-text">
+          品牌分页列表</span></a></li></ol></li></ol></section><!-- ov = overview--><section class="sidebar-ov hide"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://gitee.com/BothSavage/PicGo/raw/master/image/头像.png" alt="avatar"></div><p class="sidebar-ov-author__text">坚持你所热爱的事</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/flyfish7" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="a624066726" target="_blank" rel="noopener" data-popover="微信" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weixin"></i></span></a><a class="sidebar-ov-social-item" href="624066726" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section><div class="sidebar-reading"><div class="sidebar-reading-info"><span class="sidebar-reading-info__text">你已阅读了 </span><span class="sidebar-reading-info__num">0</span><span class="sidebar-reading-info__perc">%</span></div><div class="sidebar-reading-line"></div></div></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>flyfish7</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+  var isXML = true;
+  var search_path = 'search.json';
+
+  if (!search_path) {
+    search_path = 'search.xml';
+  } else if (/json$/i.test(search_path)) {
+    isXML = false;
+  }
+
+  var path = '/' + search_path;
+  $.ajax({
+    url: path,
+    dataType: isXML ? 'xml' : 'json',
+    async: true,
+    success: function (res) {
+      var datas = isXML ? $('entry', res).map(function () {
+        // 将 XML 转为 JSON
+        return {
+          title: $('title', this).text(),
+          content: $('content', this).text(),
+          url: $('url', this).text()
+        };
+      }).get() : res;
+      var $input = $('.search-input input');
+      var $result = $('.search-results');
+      // 搜索对象（标题、内容）的权重，影响显示顺序
+      var WEIGHT = { title: 100, content: 1 };
+      var searchPost = function () {
+        var searchText = $input.val().toLowerCase().trim();
+        // 根据空白字符分隔关键字
+        var keywords = searchText.split(/[\s]+/);
+        // 搜索结果
+        var matchPosts = [];
+
+        // 有多个关键字时，将原文字整个保存下来
+        if (keywords.length > 1) {
+          keywords.push(searchText);
+        }
+        // 防止未输入字符时搜索
+        if (searchText.length > 0) {
+          datas.forEach(function (data) {
+            var isMatch  = false;
+            // 没有标题的文章使用预设的 i18n 变量代替
+            var title = (data.title && data.title.trim()) || '[ 文章无标题 ]';
+            var titleLower = title && title.toLowerCase();
+            // 删除 HTML 标签 和 所有空白字符
+            var content = data.content && data.content.replace(/<[^>]+>/g, '');
+            var contentLower = content && content.toLowerCase();
+            // 删除重复的 /
+            var postURL = data.url && decodeURI(data.url).replace(/\/{2,}/g, '/');
+            // 标题中匹配到的关键词
+            var titleHitSlice = [];
+            // 内容中匹配到的关键词
+            var contentHitSlice = [];
+
+            keywords.forEach(function (keyword) {
+              /**
+              * 获取匹配的关键词的索引
+              * @param {String} keyword 要匹配的关键字
+              * @param {String} text 原文字
+              * @param {Boolean} caseSensitive 是否区分大小写
+              * @param {Number} weight 匹配对象的权重。权重大的优先显示
+              * @return {Array}
+              */
+              function getIndexByword (word, text, caseSensitive, weight) {
+                if (!word || !text) {
+                  return [];
+                };
+
+                var startIndex = 0; // 每次匹配的开始索引
+                var index = -1;     // 匹配到的索引值
+                var result = [];    // 匹配结果
+
+                if (!caseSensitive) {
+                  word = word.toLowerCase();
+                  text = text.toLowerCase();
+                }
+
+                while((index = text.indexOf(word, startIndex)) !== -1) {
+                  var hasMatch = false;
+                  // 索引位置相同的关键词，保留长度较长的
+                  titleHitSlice.forEach(function (hit) {
+                    if (hit.index === index && hit.word.length < word.length) {
+                      hit.word = word;
+                      hasMatch = true;
+                    }
+                  });
+                  startIndex = index + word.length;
+                  !hasMatch && result.push({ index: index, word: word, weight: weight });
+                }
+                return result;
+              }
+              titleHitSlice = titleHitSlice.concat(getIndexByword(keyword, titleLower, false, WEIGHT.title));
+              contentHitSlice = contentHitSlice.concat(getIndexByword(keyword, contentLower, false, WEIGHT.content));
+            });
+
+            var hitTitle = titleHitSlice.length;
+            var hitContent = contentHitSlice.length;
+
+            if (hitTitle > 0 || hitContent > 0) {
+              isMatch = true;
+            }
+            if (isMatch) {
+              ;[titleHitSlice, contentHitSlice].forEach(function (hit) {
+                // 按照匹配文字的索引的递增顺序排序
+                hit.sort(function (left, right) {
+                  return left.index - right.index;
+                });
+              });
+              /**
+              * 给文本中匹配到的关键词添加标记，从而进行高亮显示
+              * @param {String} text 原文本
+              * @param {Array} hitSlice 匹配项的索引信息
+              * @param {Number} start 开始索引
+              * @param {Number} end 结束索引
+              * @return {String}
+              */
+              function highlightKeyword (text, hitSlice, start, end) {
+                if (!text || !hitSlice || !hitSlice.length) {
+                  return;
+                }
+
+                var result = '';
+                var startIndex = start;
+                var endIndex = end;
+                hitSlice.forEach(function (hit) {
+                  if (hit.index < startIndex) {
+                    return;
+                  }
+
+                  var hitWordEnd = hit.index + hit.word.length;
+                  result += text.slice(startIndex, hit.index);
+                  result += '<b>' + text.slice(hit.index, hitWordEnd) + '</b>';
+                  startIndex = hitWordEnd;
+                });
+                result += text.slice(startIndex, endIndex);
+                return result;
+              }
+
+              var postData = {};
+              // 文章总的搜索权重
+              var postWeight = titleHitSlice.length * WEIGHT.title + contentHitSlice.length * WEIGHT.content;
+              // 标记匹配关键词后的标题
+              var postTitle = highlightKeyword(title, titleHitSlice, 0, title.length) || title;
+              // 标记匹配关键词后的内容
+              var postContent;
+              // 显示内容的长度
+              var SHOW_WORD_LENGTH = 200;
+              // 命中关键词前的字符显示长度
+              var SHOW_WORD_FRONT_LENGTH = 20;
+              var SHOW_WORD_END_LENGTH = SHOW_WORD_LENGTH - SHOW_WORD_FRONT_LENGTH;
+
+              // 截取匹配的第一个字符，前后共 200 个字符来显示
+              if (contentHitSlice.length > 0) {
+                var firstIndex = contentHitSlice[0].index;
+                var start = firstIndex > SHOW_WORD_FRONT_LENGTH ? firstIndex - SHOW_WORD_FRONT_LENGTH : 0;
+                var end = firstIndex + SHOW_WORD_END_LENGTH;
+                postContent = highlightKeyword(content, contentHitSlice, start, end);
+              } else { // 未匹配到内容，直接截取前 200 个字符来显示
+                postContent = content.slice(0, SHOW_WORD_LENGTH);
+              }
+              postData.title = postTitle;
+              postData.content = postContent;
+              postData.url = postURL;
+              postData.weight = postWeight;
+              matchPosts.push(postData);
+            }
+          });
+        }
+
+        var resultInnerHtml = '';
+        if (matchPosts.length) {
+          // 按权重递增的顺序排序，使权重大的优先显示
+          matchPosts.sort(function (left, right) {
+            return right.weight - left.weight;
+          });
+          resultInnerHtml += '<ul>';
+          matchPosts.forEach(function (post) {
+            resultInnerHtml += '<li><a class="search-results-title" href="' + post.url + '">';
+            resultInnerHtml += post.title;
+            resultInnerHtml += '</a><div class="search-results-content">';
+            resultInnerHtml += post.content;
+            resultInnerHtml += '</div></li>';
+          });
+          resultInnerHtml += '</ul>';
+        } else {
+          resultInnerHtml += '<div class="search-results-none"><i class="far fa-meh"></i></div>';
+        }
+        $result.html(resultInnerHtml);
+      };
+      $input.on('input', searchPost);
+      $input.on('keyup', function (e) {
+        if (e.keyCode === Stun.utils.codeToKeyCode('Enter')) {
+          searchPost();
+        }
+      });
+    }
+  });
+}
+
+function closeSearch () {
+  $('body').css({ overflow: 'auto' });
+  $('.search-popup').css({ display: 'none' });
+  $('.search-mask').css({ display: 'none' });
+}
+
+window.addEventListener('DOMContentLoaded', function () {
+  Stun.utils.pjaxReloadLocalSearch = function () {
+    $('.header-nav-search').on('click', function (e) {
+      e.stopPropagation();
+      $('body').css('overflow', 'hidden');
+      $('.search-popup')
+        .velocity('stop')
+        .velocity('transition.expandIn', {
+          duration: 300,
+          complete: function () {
+            $('.search-popup input').focus();
+          }
+        });
+      $('.search-mask')
+        .velocity('stop')
+        .velocity('transition.fadeIn', {
+          duration: 300
+        });
+
+      initSearch();
+    });
+    $('.search-mask, .search-close').on('click', function () {
+      closeSearch();
+    });
+    $(document).on('keydown', function (e) {
+      // Escape <=> 27
+      if (e.keyCode === Stun.utils.codeToKeyCode('Escape')) {
+        closeSearch();
+      }
+    });
+  };
+
+  Stun.utils.pjaxReloadLocalSearch();
+}, false);
+
+function safeOpenUrl(url) {
+  var newTab = window.open();
+  newTab.opener = null;
+  newTab.location = url;
+}
+
+function extSearch(engine) {
+  var engines = {
+    google: 'https://www.google.com/search?q=',
+    bing: 'https://cn.bing.com/search?q=',
+    baidu: 'https://www.baidu.com/s?ie=UTF-8&wd=',
+  };
+  var host = window.location.host;
+  var query = $('.search-input input').val().toLowerCase().trim();
+  var uri = engines[engine] + query + ' site:' + host;
+
+  if (query) {
+    safeOpenUrl(uri);
+  } else {
+    Stun.utils.popAlert('warning', '请输入字符');
+  }
+}
+
+var assistSearchList = window.CONFIG.assistSearch;
+
+if (Array.isArray(assistSearchList)) {
+  assistSearchList.forEach(function (name) {
+    document.querySelector('.search-btns-item--' + name).addEventListener('click', function () {
+      extSearch(name);
+    }, false);
+  });
+}</script><script src="https://cdn.jsdelivr.net/gh/sukkaw/busuanzi@latest/bsz.pure.mini.js" async></script><script src="/js/utils.js?v=2.6.2"></script><script src="/js/stun-boot.js?v=2.6.2"></script><script src="/js/scroll.js?v=2.6.2"></script><script src="/js/header.js?v=2.6.2"></script><script src="/js/sidebar.js?v=2.6.2"></script><script type="application/json" src="/search.json"></script></body></html>

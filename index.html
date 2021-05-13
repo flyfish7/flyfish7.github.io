@@ -28,7 +28,113 @@ var CONFIG = {
   sourcePath: {"js":"js","css":"css","images":"images"},
 };
 
-window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">noobfish</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2021/05/11/JVM%E6%80%BB%E7%BB%93/">JVM总结</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-05-11</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-05-11</span></span></div></header><div class="post-body"><div class="post-excerpt"><h2 id="类加载机制"   >
+window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></head><body><div class="container" id="container"><header class="header" id="header"><div class="header-inner"><nav class="header-nav header-nav--fixed"><div class="header-nav-inner"><div class="header-nav-menubtn"><i class="fas fa-bars"></i></div><div class="header-nav-menu"><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/"><span class="header-nav-menu-item__icon"><i class="fas fa-home"></i></span><span class="header-nav-menu-item__text">首页</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/archives/"><span class="header-nav-menu-item__icon"><i class="fas fa-folder-open"></i></span><span class="header-nav-menu-item__text">归档</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/categories/"><span class="header-nav-menu-item__icon"><i class="fas fa-layer-group"></i></span><span class="header-nav-menu-item__text">分类</span></a></div><div class="header-nav-menu-item"><a class="header-nav-menu-item__link" href="/tags/"><span class="header-nav-menu-item__icon"><i class="fas fa-tags"></i></span><span class="header-nav-menu-item__text">标签</span></a></div></div><div class="header-nav-search"><span class="header-nav-search__icon"><i class="fas fa-search"></i></span><span class="header-nav-search__text">搜索</span></div><div class="header-nav-mode"><div class="mode"><div class="mode-track"><span class="mode-track-moon"></span><span class="mode-track-sun"></span></div><div class="mode-thumb"></div></div></div></div></nav><div class="header-banner"><div class="header-banner-info"><div class="header-banner-info__title">noobfish</div><div class="header-banner-info__subtitle"></div></div></div></div></header><main class="main" id="main"><div class="main-inner"><div class="content-wrap" id="content-wrap"><div class="content content-home" id="content"><section class="postlist"><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2021/05/13/%E7%A7%92%E6%9D%80%E9%A1%B9%E7%9B%AE/">秒杀项目学习</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-05-13</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-05-13</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>声明：本项目来自于黑马青橙商城，本篇仅用于个人学习</p>
+
+        <h2 id="需求分析和系统设计"   >
+          <a href="#需求分析和系统设计" class="heading-link"><i class="fas fa-link"></i></a><a href="#需求分析和系统设计" class="headerlink" title="需求分析和系统设计"></a>需求分析和系统设计</h2>
+      
+        <h3 id="需求分析"   >
+          <a href="#需求分析" class="heading-link"><i class="fas fa-link"></i></a><a href="#需求分析" class="headerlink" title="需求分析"></a>需求分析</h3>
+      <p>做的是B2C电商平台，包含网站前台和管理后台两大部分。网站前台包含主站频道（首页、搜索、购物车以及支付）、用户中心、秒杀、优惠券等频道。管理后台包含商品、订单、库存、用户、运营、统计、财务、设置等功能。</p>
+
+        <h3 id="系统设计"   >
+          <a href="#系统设计" class="heading-link"><i class="fas fa-link"></i></a><a href="#系统设计" class="headerlink" title="系统设计"></a>系统设计</h3>
+      
+        <h4 id="数据库设计"   >
+          <a href="#数据库设计" class="heading-link"><i class="fas fa-link"></i></a><a href="#数据库设计" class="headerlink" title="数据库设计"></a>数据库设计</h4>
+      <ol>
+<li>商品库</li>
+<li>订单库</li>
+<li>基础设置库</li>
+<li>运营库</li>
+<li>用户库</li>
+<li>系统库</li>
+<li>支付库</li>
+<li>短信库</li>
+</ol>
+
+        <h4 id="技术选型"   >
+          <a href="#技术选型" class="heading-link"><i class="fas fa-link"></i></a><a href="#技术选型" class="headerlink" title="技术选型"></a>技术选型</h4>
+      <p>主框架技术：SSM（通用mapper）+Dubbo</p>
+<p>前端技术：网站后台Vue.js+ElementUI，网站前台采用Vue.js和模板技术thymeleaf</p>
+<p>消息中间件技术：RabbitMQ</p>
+<p>搜索中间件技术：elasticsearch</p>
+<p>缓存中间件技术：redis</p>
+<p>报表插件：echars</p>
+<p>安全框架：SpringSecurity</p>
+<p>单点登录中间件：CAS</p>
+
+        <h4 id="系统框架图"   >
+          <a href="#系统框架图" class="heading-link"><i class="fas fa-link"></i></a><a href="#系统框架图" class="headerlink" title="系统框架图"></a>系统框架图</h4>
+      <p><a target="_blank" rel="noopener" href="https://imgtu.com/i/gDt45d"><img src="https://z3.ax1x.com/2021/05/13/gDt45d.md.png" alt="gDt45d.md.png"></a></p>
+
+        <h2 id="通用mapper"   >
+          <a href="#通用mapper" class="heading-link"><i class="fas fa-link"></i></a><a href="#通用mapper" class="headerlink" title="通用mapper"></a>通用mapper</h2>
+      
+        <h3 id="什么是通用mapper"   >
+          <a href="#什么是通用mapper" class="heading-link"><i class="fas fa-link"></i></a><a href="#什么是通用mapper" class="headerlink" title="什么是通用mapper"></a>什么是通用mapper</h3>
+      <p>通用mapper是一个可以实现任意MyBatis通用方法的框架，项目提供了常规的增删改查操作以及Example相关的单表操作。可以避免自己去在mapper.xml写很多sql语句</p>
+
+        <h3 id="通用mapper快速入门"   >
+          <a href="#通用mapper快速入门" class="heading-link"><i class="fas fa-link"></i></a><a href="#通用mapper快速入门" class="headerlink" title="通用mapper快速入门"></a>通用mapper快速入门</h3>
+      <p>在线官方文档：<span class="exturl"><a class="exturl__link"   target="_blank" rel="noopener" href="https://gitee.com/free/Mapper/wikis/Home" >https://gitee.com/free/Mapper/wikis/Home</a><span class="exturl__icon"><i class="fas fa-external-link-alt"></i></span></span></p>
+
+        <h4 id="通用mapper与Spring集成"   >
+          <a href="#通用mapper与Spring集成" class="heading-link"><i class="fas fa-link"></i></a><a href="#通用mapper与Spring集成" class="headerlink" title="通用mapper与Spring集成"></a>通用mapper与Spring集成</h4>
+      <p>官方的文档说明了通用mapper的三种使用方式，纯java使用方式、与Spring集成方式、与SpringBoot集成方式。这里使用的是Spring集成方式</p>
+<ol>
+<li>引入依赖</li>
+</ol>
+<p>在pom.xml文件中存放依赖</p>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;&gt;</span></span><br></pre></td></tr></table></div></figure>
+<ol start="2">
+<li>与Spring集成</li>
+</ol>
+<figure class="highlight xml"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;&gt;</span></span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="实体类映射"   >
+          <a href="#实体类映射" class="heading-link"><i class="fas fa-link"></i></a><a href="#实体类映射" class="headerlink" title="实体类映射"></a>实体类映射</h4>
+      <p>使用JPA的注解</p>
+<figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+
+        <h4 id="创建Mapper接口"   >
+          <a href="#创建Mapper接口" class="heading-link"><i class="fas fa-link"></i></a><a href="#创建Mapper接口" class="headerlink" title="创建Mapper接口"></a>创建Mapper接口</h4>
+      <figure class="highlight java"><div class="table-container"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></div></figure>
+
+<p>继承<code>tk.mybatis.mapper.common.Mapper</code>接口，在接口上指定了泛型<code>Brand</code>。当继承了<code>Mapper</code>接口后，就已经有了针对<code>Brand</code>的大量方法。这些方法中和MBG生成的大部分方法都一致，还有一部分MBG之外的常用方法。</p>
+
+        <h2 id="工程搭建"   >
+          <a href="#工程搭建" class="heading-link"><i class="fas fa-link"></i></a><a href="#工程搭建" class="headerlink" title="工程搭建"></a>工程搭建</h2>
+      
+        <h3 id="准备工作"   >
+          <a href="#准备工作" class="heading-link"><i class="fas fa-link"></i></a><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3>
+      
+        <h3 id="模块依赖关系图"   >
+          <a href="#模块依赖关系图" class="heading-link"><i class="fas fa-link"></i></a><a href="#模块依赖关系图" class="headerlink" title="模块依赖关系图"></a>模块依赖关系图</h3>
+      
+        <h3 id="工程搭建-1"   >
+          <a href="#工程搭建-1" class="heading-link"><i class="fas fa-link"></i></a><a href="#工程搭建-1" class="headerlink" title="工程搭建"></a>工程搭建</h3>
+      
+        <h4 id="父工程与公共模块"   >
+          <a href="#父工程与公共模块" class="heading-link"><i class="fas fa-link"></i></a><a href="#父工程与公共模块" class="headerlink" title="父工程与公共模块"></a>父工程与公共模块</h4>
+      
+        <h4 id="服务层模块（商品）"   >
+          <a href="#服务层模块（商品）" class="heading-link"><i class="fas fa-link"></i></a><a href="#服务层模块（商品）" class="headerlink" title="服务层模块（商品）"></a>服务层模块（商品）</h4>
+      
+        <h4 id="web层（管理后台）"   >
+          <a href="#web层（管理后台）" class="heading-link"><i class="fas fa-link"></i></a><a href="#web层（管理后台）" class="headerlink" title="web层（管理后台）"></a>web层（管理后台）</h4>
+      
+        <h2 id="管理后台-品牌管理后端"   >
+          <a href="#管理后台-品牌管理后端" class="heading-link"><i class="fas fa-link"></i></a><a href="#管理后台-品牌管理后端" class="headerlink" title="管理后台-品牌管理后端"></a>管理后台-品牌管理后端</h2>
+      
+        <h3 id="品牌列表"   >
+          <a href="#品牌列表" class="heading-link"><i class="fas fa-link"></i></a><a href="#品牌列表" class="headerlink" title="品牌列表"></a>品牌列表</h3>
+      
+        <h3 id="品牌分页列表"   >
+          <a href="#品牌分页列表" class="heading-link"><i class="fas fa-link"></i></a><a href="#品牌分页列表" class="headerlink" title="品牌分页列表"></a>品牌分页列表</h3>
+      </div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2021/05/11/JVM%E6%80%BB%E7%BB%93/">JVM总结</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-05-11</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-05-11</span></span></div></header><div class="post-body"><div class="post-excerpt"><h2 id="类加载机制"   >
           <a href="#类加载机制" class="heading-link"><i class="fas fa-link"></i></a><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h2>
       <p>先放个偷来的图</p>
 <p><img src="https://z3.ax1x.com/2021/04/27/gpy1ij.png" alt="avatar"></p>
@@ -82,13 +188,7 @@ window.CONFIG = CONFIG;</script><meta name="generator" content="Hexo 5.4.0"></he
 </li>
 <li><p>平时一般用到什么样的集合类</p>
 </li>
-<li><p>谈谈你对ThreadLocal的了解，数据存在哪</p></div><div class="post-readmore"><a class="post-readmore__link" href="/2021/04/23/%E7%BD%91%E6%98%93%E4%B8%80%E9%9D%A2/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2021/04/23/MVC%E4%B8%8E%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/">MVC与三层架构</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-04-23</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-04-23</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>MVC（Model, View, Controller）是一种设计模式，而三层架构(用户表示层（UI），业务逻辑层（BIL），数据访问层（DAL），最后再加上实体类（Model）)是一种软件架构。可以理解为依照MVC这种设计模式的规范去实现一个三层架构。</p></div><div class="post-readmore"><a class="post-readmore__link" href="/2021/04/23/MVC%E4%B8%8E%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2021/04/23/%E9%98%BF%E9%87%8C%E4%B8%80%E9%9D%A2/">阿里一面</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-04-23</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-04-23</span></span></div></header><div class="post-body"><div class="post-excerpt"><h2 id="1-Java基础："   >
-          <a href="#1-Java基础：" class="heading-link"><i class="fas fa-link"></i></a><a href="#1-Java基础：" class="headerlink" title="1. Java基础："></a><strong>1. Java基础：</strong></h2>
-      <ol>
-<li>什么是重载和重写？ </li>
-<li>重写有什么限制？ </li>
-<li>equals()和hashcode()？ </li>
-<li>什么场景下要重写equals()？</div><div class="post-readmore"><a class="post-readmore__link" href="/2021/04/23/%E9%98%BF%E9%87%8C%E4%B8%80%E9%9D%A2/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://gitee.com/BothSavage/PicGo/raw/master/image/头像.png" alt="avatar"></div><p class="sidebar-ov-author__text">坚持你所热爱的事</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/flyfish7" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="a624066726" target="_blank" rel="noopener" data-popover="微信" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weixin"></i></span></a><a class="sidebar-ov-social-item" href="624066726" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">8</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>flyfish7</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
+<li><p>谈谈你对ThreadLocal的了解，数据存在哪</p></div><div class="post-readmore"><a class="post-readmore__link" href="/2021/04/23/%E7%BD%91%E6%98%93%E4%B8%80%E9%9D%A2/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article><article class="postlist-item post"><header class="post-header"><h1 class="post-title"><a class="post-title__link" href="/2021/04/23/MVC%E4%B8%8E%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/">MVC与三层架构</a></h1><div class="post-meta"><span class="post-meta-item post-meta-item--createtime"><span class="post-meta-item__icon"><i class="far fa-calendar-plus"></i></span><span class="post-meta-item__info">发表于</span><span class="post-meta-item__value">2021-04-23</span></span><span class="post-meta-item post-meta-item--updatetime"><span class="post-meta-item__icon"><i class="far fa-calendar-check"></i></span><span class="post-meta-item__info">更新于</span><span class="post-meta-item__value">2021-04-23</span></span></div></header><div class="post-body"><div class="post-excerpt"><p>MVC（Model, View, Controller）是一种设计模式，而三层架构(用户表示层（UI），业务逻辑层（BIL），数据访问层（DAL），最后再加上实体类（Model）)是一种软件架构。可以理解为依照MVC这种设计模式的规范去实现一个三层架构。</p></div><div class="post-readmore"><a class="post-readmore__link" href="/2021/04/23/MVC%E4%B8%8E%E4%B8%89%E5%B1%82%E6%9E%B6%E6%9E%84/"><span class="post-readmore__text">阅读全文</span><span class="post-readmore__icon"><i class="fas fa-long-arrow-alt-right"></i></span></a></div></div></article></section><nav class="paginator"><div class="paginator-inner"><span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fas fa-angle-right"></i></a></div></nav></div></div><div class="sidebar-wrap" id="sidebar-wrap"><aside class="sidebar" id="sidebar"><section class="sidebar-toc hide"></section><!-- ov = overview--><section class="sidebar-ov"><div class="sidebar-ov-author"><div class="sidebar-ov-author__avatar"><img class="sidebar-ov-author__avatar_img" src="https://gitee.com/BothSavage/PicGo/raw/master/image/头像.png" alt="avatar"></div><p class="sidebar-ov-author__text">坚持你所热爱的事</p></div><div class="sidebar-ov-social"><a class="sidebar-ov-social-item" href="https://github.com/flyfish7" target="_blank" rel="noopener" data-popover="Github" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-github"></i></span></a><a class="sidebar-ov-social-item" href="a624066726" target="_blank" rel="noopener" data-popover="微信" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-weixin"></i></span></a><a class="sidebar-ov-social-item" href="624066726" target="_blank" rel="noopener" data-popover="QQ" data-popover-pos="up"><span class="sidebar-ov-social-item__icon"><i class="fab fa-qq"></i></span></a></div><div class="sidebar-ov-state"><a class="sidebar-ov-state-item sidebar-ov-state-item--posts" href="/archives/"><div class="sidebar-ov-state-item__count">11</div><div class="sidebar-ov-state-item__name">归档</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--categories" href="/categories/"><div class="sidebar-ov-state-item__count">9</div><div class="sidebar-ov-state-item__name">分类</div></a><a class="sidebar-ov-state-item sidebar-ov-state-item--tags" href="/tags/"><div class="sidebar-ov-state-item__count">10</div><div class="sidebar-ov-state-item__name">标签</div></a></div><div class="sidebar-ov-cc"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en" target="_blank" rel="noopener" data-popover="知识共享许可协议" data-popover-pos="up"><img src="/images/cc-by-nc-sa.svg"></a></div></section></aside></div><div class="clearfix"></div></div></main><footer class="footer" id="footer"><div class="footer-inner"><div><span>Copyright © 2021</span><span class="footer__icon"><i class="fas fa-heart"></i></span><span>flyfish7</span></div><div><span>由 <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a> 强力驱动</span><span> v5.4.0</span><span class="footer__devider">|</span><span>主题 - <a href="https://github.com/liuyib/hexo-theme-stun/" title="Stun" target="_blank" rel="noopener">Stun</a></span><span> v2.6.2</span></div><div class="busuanzi"><span class="busuanzi-siteuv"><span class="busuanzi-siteuv__icon"><i class="fas fa-user"></i></span><span class="busuanzi-siteuv__info">访问人数</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_uv"></span></span><span class="busuanzi-sitepv"><span class="busuanzi-siteuv__icon"><i class="fas fa-eye"></i></span><span class="busuanzi-siteuv__info">浏览总量</span><span class="busuanzi-siteuv__value" id="busuanzi_value_site_pv"></span></span></div></div></footer><div class="loading-bar" id="loading-bar"><div class="loading-bar__progress"></div></div><div class="back2top" id="back2top"><span class="back2top__icon"><i class="fas fa-rocket"></i></span></div></div><div class="search-mask"></div><div class="search-popup"><span class="search-close"></span><div class="search-input"><input placeholder="搜索文章（支持多关键词，请用空格分隔）"></div><div class="search-results"></div></div><script src="https://cdn.jsdelivr.net/npm/jquery@v3.4.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@1.5.2/velocity.ui.min.js"></script><script>function initSearch() {
   var isXML = true;
   var search_path = 'search.json';
 
